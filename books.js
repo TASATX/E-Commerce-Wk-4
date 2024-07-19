@@ -1,3 +1,70 @@
+function renderBooks(filter) {
+  const booksWrapper = document.querySelector(".books");
+  const books = getBooks();
+
+  if (filter === "LOW_TO_HIGH") {
+    books.sort ((a, b) => a.originalPrice- b.originalPrice)
+  }
+  else if (filter === "HIGH_TO_LOW") {
+    books.sort ((a, b) => b.originalPrice- a.originalPrice)
+  }
+  else if (filter === "RATING") {
+    books.sort ((a, b) => b.rating - a.rating);
+  }
+
+const booksHtml = books
+  .map((book) => {
+    const ratingsHtmlString = ratingsHtml(book.rating);
+    const priceHtmlString = priceHtml(book.originalPrice, book.salePrice)
+
+    return `<div class="book">
+    <figure class="book__img--wrapper">
+      <img class="book__img" src="${book.url}" alt="">
+    </figure>
+    <div class="book__title">
+      ${book.title}
+    </div>
+    <div class="book__ratings">
+      ${ratingsHtmlString};
+    </div>
+    <div class="book__price">
+      ${priceHtml(book.originalPrice, book.salePrice)}
+    </div>
+  </div>`;
+    })
+    .join("");
+
+booksWrapper.innerHTML = booksHtml;
+}
+
+function priceHtml(originalPrice, salesPrice) {
+  if (!salesPrice) {
+    return `$${originalPrice.toFixed(2)};`
+  }
+  else if (salesPrice) {
+    return `<span class="book__price--normal">$${originalPrice.toFixed(2)}</span>$${salePrice.toFixed(2)}`
+  }
+}
+
+function ratingsHtml(rating) {
+  let ratingsHtml = "";
+  for (i = 0; Math.floor(i < rating); ++i) {
+    ratingsHtml += '<i class="fas fa-star"></i>\n';
+  }
+  if (!Number.isInteger(rating)) {
+  ratingsHtml += '<i class="fas fa-star-half-alt"></i>\n';
+  }
+
+  return ratingsHtml;
+} 
+
+function filterBooks(event) {
+  renderBooks(event.target.value);
+}
+
+setTimeout(() => {
+ renderBooks();
+});
 
 
 // FAKE DATA
@@ -6,7 +73,7 @@ function getBooks() {
     {
       id: 1,
       title: "Crack the Coding Interview",
-                url: "assets/crack the coding interview.png",
+      url: "assets/crack the coding interview.png",
       originalPrice: 49.95,
       salePrice: 14.95,
       rating: 4.5,
@@ -73,7 +140,7 @@ function getBooks() {
       url: "assets/book-6.jpeg",
       originalPrice: 35,
       salePrice: null,
-      rating: 4,
+      rating: 2,
     },
     {
       id: 10,
