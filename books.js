@@ -37,11 +37,11 @@ const booksHtml = books
 booksWrapper.innerHTML = booksHtml;
 }
 
-function priceHtml(originalPrice, salesPrice) {
-  if (!salesPrice) {
+function priceHtml(originalPrice, salePrice) {
+  if (!salePrice) {
     return `$${originalPrice.toFixed(2)};`
   }
-  else if (salesPrice) {
+  else if (salePrice) {
     return `<span class="book__price--normal">$${originalPrice.toFixed(2)}</span>$${salePrice.toFixed(2)}`
   }
 }
