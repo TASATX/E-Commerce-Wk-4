@@ -465,11 +465,11 @@ select {
 }
 
 .books__loading--spinner {
-  display: none !important;
+  display: none;
 }
 
 .books__loading .books__loading--spinner {
-  display: block !important;
+  display: block;
 }
 
 

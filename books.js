@@ -52,11 +52,11 @@ async function renderBooks(filter) {
   
   function ratingsHtml(rating) {
     let ratingsHtml = '';
-    for (let i = 0; Math.floor(rating); ++i) {
-     ratingsHtml += '<i class="fa-solid fa-star"></i>\n';
+    for (let i = 0; Math.floor(i < rating); ++i) {
+     ratingsHtml += '<i class="fas fa-star"></i>\n';
     }
-    if (!Number.isInteger(rating)) {
-     ratingsHtml += '<i class="fa-solid fa-star-half-stroke"></i>\n';
+    if (!Number.isInteger (rating)) {
+     ratingsHtml += '<i class="fas fa-star-half-stroke"></i>\n';
     }
     return ratingsHtml;
   } 
@@ -67,7 +67,7 @@ async function renderBooks(filter) {
   
   setTimeout(() => {
    renderBooks();
-  }, 10); 
+  }); 
   
   
   // FAKE DATA
